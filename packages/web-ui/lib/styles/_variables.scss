@@ -1,0 +1,50 @@
+/*
+ * Fonts
+ */
+
+$inter-font-family: 'Inter', 'Helvetica Neue', sans-serif;
+
+/*
+ * Easing functions
+ */
+$ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+$zIndex-dropdown: 9;
+$zIndex-tooltip: 10;
+$zIndex-topNav: 9999;
+
+$top-nav-height: 72px;
+$top-nav-adjusted-height: 80px;
+
+$background-gradient-purple-black: linear-gradient(360deg, #10141f 24%, #2d1c46 100%);
+
+// Border radius variables
+$rounded-full: 999px;
+$rounded-xl: 16px;
+$rounded-lg: 12px;
+$rounded-md: 8px;
+$rounded-sm: 4px;
+
+// Variables from @adrise/web-ui
+$animation-duration: 0.3s;
+
+$text-color-disabled: rgba(255, 255, 255, 0.5);
+
+$golden-gate: #ff501a;
+$white: #fff;
+$deep-gray: rgba(114, 114, 114, 0.5);
+$black-grey: #202026;
+$slate-grey: #707c86;
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$redesigned-content-detail-margin-base: 24px;
+$redesigned-content-detail-margin-small: 16px;
+
+// deprecated
+// !!! PLEASE DON'T USE VALUES BELOW ANYMORE !!!
+
+$font-size-base: 14px;

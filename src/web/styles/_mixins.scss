@@ -1,0 +1,31 @@
+@import '~@tubitv/web-ui/lib/styles/utils';
+
+// Modal close button mixin
+// Standard close button for modals - positioned top-right (16px) with hover effects
+// Based on Figma design: https://www.figma.com/design/1ma8ySGkb41yjNPSME4KL1
+@mixin modal-close-btn {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  @include box(24px);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  @include flex-center;
+
+  @include themify {
+    color: themed('transparentForeground75');
+  }
+
+  &:hover {
+    @include themify {
+      color: themed('primaryForeground');
+    }
+  }
+
+  svg {
+    @include box(100%);
+  }
+}
+

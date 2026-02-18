@@ -1,0 +1,14 @@
+@import 'theme/mixins';
+@import 'theme/variables';
+
+.terms {
+    text-align: center;
+    @include web-body-small;
+    width: 312px;
+    a {
+      font-weight: 600;
+      @include themify {
+        color: themed('primaryAccent');
+      }
+    }
+  }

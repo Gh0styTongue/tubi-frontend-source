@@ -1,0 +1,221 @@
+@use "sass:math";
+
+@import 'theme/mixins';
+@import 'theme/variables';
+@import '~@tubitv/web-ui/lib/styles/utils';
+
+@mixin responsive-horizontal-margin {
+  margin-left: $grid-margin-base;
+  margin-right: $grid-margin-base;
+  @include media-tablet {
+    margin-left: $grid-margin-medium;
+    margin-right: $grid-margin-medium;
+  }
+  @include media-mobile {
+    margin-left: $grid-margin-small;
+    margin-right: $grid-margin-small;
+  }
+}
+
+.creatorLanding {
+  min-height: 100vh;
+  @include themify {
+    background-color: themed('primaryBackground');
+    color: themed('primaryForeground');
+  }
+  position: relative;
+
+  .background {
+    width: 66%;
+    padding-top: math.div(540, 960) * 66%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 0;
+    @include media-mobile {
+      height: 222px;
+      width: 100%;
+      padding-top: 0;
+      background-position: center top;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: unset;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      @include themify {
+        background: 
+          linear-gradient(
+            180deg,
+            themed('transparentBackground0') 64%,
+            themed('primaryBackground') 100%
+          ),
+          linear-gradient(
+            270deg,
+            themed('transparentBackground0') 25%,
+            themed('transparentBackground10') 40%,
+            themed('primaryBackground') 100%
+          ),
+          linear-gradient(
+            0deg,
+            themed('primaryBackground') 0%,
+            themed('transparentBackground50') 60%,
+            themed('transparentBackground0') 85%
+          );
+      }
+      @include media-mobile {
+        bottom: 0;
+        top: unset;
+        height: 111px;
+        @include themify {
+          background: linear-gradient(180deg, themed('transparentBackground0') 0%, themed('primaryBackground') 100%);
+        }
+      }
+    }
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    padding-top: 136px;
+    max-width: 1920px;
+    margin: 0 auto 80px;
+
+    @include media-tablet {
+      padding-top: 120px;
+    }
+
+    @include media-mobile {
+      padding-top: 158px;
+    }
+  }
+
+  .relatedContents {
+    margin-top: 24px;
+    @include responsive-horizontal-margin;
+    @include media-mobile {
+      margin-top: 8px;
+    }
+  }
+
+  .loadingState {
+    @include flex-center;
+    flex: 1;
+    min-height: 500px;
+    width: 3rem;
+    height: 3rem;
+
+    @include media-mobile {
+      min-height: 300px;
+    }
+  }
+}
+
+
+// ============================================================================
+// CreatorHero Styles
+// ============================================================================
+.creatorHero {
+  margin-bottom: 24px;
+  @include responsive-horizontal-margin;
+  @include media-mobile {
+    margin-bottom: 8px;
+  }
+}
+
+.heroMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.heroNameRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  @include media-mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+.heroAvatarWrapper {
+  flex-shrink: 0;
+}
+
+.heroAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  object-fit: cover;
+  @include themify {
+    background-color: themed('secondaryBackground');
+  }
+}
+
+.heroName {
+  @include web-header-large;
+  line-height: 1.17;
+  @include themify {
+    color: themed('primaryForeground');
+  }
+  margin: 0;
+}
+
+.heroAttributes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+
+  @include web-body-medium;
+
+  > div > a {
+    @include themify {
+      color: themed('transparentForeground75');
+    }
+  }
+}
+
+.heroDescription {
+  @include web-body-medium;
+  @include themify {
+    color: themed('primaryForeground');
+  }
+  margin: 4px 0 0;
+  max-width: 632px;
+}
+
+.creatorRow {
+  @include responsive-horizontal-margin;
+
+  .prevNext {
+    svg {
+      margin-bottom: 85px;
+      @include media-mobile {
+        margin-bottom: 62px;
+      }
+    }
+    &.noDescription {
+      svg {
+        margin-bottom: 80px;
+        @include media-mobile {
+          margin-bottom: 46px;
+        }
+      }
+    }
+  }
+
+}

@@ -1,0 +1,62 @@
+@import "theme/mixins";
+
+.autoplayCountdown {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0 0 convert1080pxToREM(16px);
+  @include themify {
+    background-color: themed('transparentScrim');
+  }
+  border-radius: convert1080pxToREM(28px);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  height: auto!important;
+  
+  &.visible {
+    opacity: 1;
+  }
+
+  .text {
+    @include ott-body-extra-small-strong;
+    margin-right: convert1080pxToREM(8px);
+    @include themify {
+      color: themed('primaryForeground');
+    }
+  }
+
+  .numberContainer {
+    position: relative;
+    width: convert1080pxToREM(40px);
+    height: convert1080pxToREM(40px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .progressRing {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+
+  .progressRingCircle {
+    @include themify {
+      stroke: themed('transparentForeground50');
+      fill: themed('transparentBackground50');
+    }
+    transition: stroke-dashoffset 1s linear;
+  }
+
+  .number {
+    @include ott-body-extra-small-strong;
+    position: relative;
+    z-index: 1;
+    @include themify {
+      color: themed('primaryForeground');
+    }
+  }
+}
+

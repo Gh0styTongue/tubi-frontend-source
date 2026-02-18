@@ -1,0 +1,95 @@
+@import "~@adrise/web-ui/lib/styles/variables";
+@import "~@tubitv/design/mixin.module";
+
+$light-bg: #f0f3f5;
+$static-page-max-width: 650px;
+
+$kids-mode-theme-color: #fea534;
+
+$step-indicator-non-active-color: #a3a3a3;
+
+$graphite: #9699a3;
+
+$grid-animation-duration-with-throttler: 300ms;
+
+$ott-spinner-size: convert1080pxToREM(75px);
+$web-live-spinner-size: 60px;
+
+/*
+Usage:
+
+Pass single property
+@include themeColor(color)
+
+Pass multiple properties
+@include themeColor([color, border-color])
+
+To enable -webkit prefix to properties
+@include themeColor([color, border-color], true);
+
+To pass values for the property
+@include themeColor(box-shadow, true, 0, 0, 0, convert1080pxToREM(10px));
+*/
+@mixin themeColor($properties, $webkit: false, $values...) {
+  @each $prop in $properties {
+    $propertyValue: "";
+    @each $value in $values {
+      $propertyValue: unquote($propertyValue) + $value + " ";
+    }
+    #{$prop}: unquote($propertyValue) $golden-gate;
+    @if ($webkit) {
+      -webkit-#{$prop}: unquote($propertyValue) $golden-gate;
+    }
+    :global(.kids-mode) & {
+      #{$prop}: unquote($propertyValue) $kids-mode-theme-color;
+      @if ($webkit) {
+        -webkit-#{$prop}: unquote($propertyValue) $kids-mode-theme-color;
+      }
+    }
+    :global(.defaultDarkTheme) & {
+      #{$prop}: unquote($propertyValue) #FFFF13;
+      @if ($webkit) {
+        -webkit-#{$prop}: unquote($propertyValue) #FFFF13;
+      }
+    }
+    :global(.kidsDarkTheme) & {
+      #{$prop}: unquote($propertyValue) #FFFF13;
+      @if ($webkit) {
+        -webkit-#{$prop}: unquote($propertyValue) #FFFF13;
+      }
+    }
+  }
+}
+
+$ott-left-nav-safe-zone-width: 187px;
+
+$ott-home-nav-enabled-extra-padding: 5px;
+$ott-home-comcast-hosp-extra-padding: 30px;
+$ott-home-extra-padding-top: 80px;
+$ott-home-top-nav-padding-top: 38px;
+
+$ott-top-nav-height: 84px;
+$ott-top-nav-margin-bottom: 26px;
+$ott-top-nav-total-height: $ott-home-top-nav-padding-top + $ott-top-nav-height + $ott-top-nav-margin-bottom;
+
+$font-weight-thin: 100;
+$font-weight-extra-light: 200;
+$font-weight-medium: 500;
+// The same as black
+$font-weight-extra-bold: 800;
+// The same as ultra
+$font-weight-ultra-bold: 900;
+
+$ott-sponsorship-header-height: 86px;
+
+$expiration-offset: 11px;
+
+$side-sheet-width: 658px;
+$side-sheet-transition-duration: 100ms;
+
+$default-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+// the space for extra label in OTTTopDetails section, such like MatureContentGate label
+$ott-top-details-label-height: 48px;
+
+$ott-qwert-keyboard-width: 776px;

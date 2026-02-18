@@ -1,0 +1,36 @@
+/**
+Grid
+ */
+
+$tablet-breakpoint: 1170px;
+$mobile-breakpoint: 768px;
+
+/**
+ * 0~768px(md): mobile
+ * 768~1170px(lg): tablet
+ * 1170px~: desktop
+ */
+$grid-breakpoints: (
+  xs: 0,
+  sm: 375px,
+  sMd: 540px,
+  md: 768px,
+  lg: 960px,
+  xl: 1170px,
+  xxl: 1440px,
+) !default;
+$grid-columns: 12 !default;
+$grid-gutter-width-base: 10px !default;
+$grid-gutter-width-small: 4px !default;
+$grid-gutter-widths: (
+  sMd: $grid-gutter-width-small,
+) !default;
+$grid-margin-base: 65px !default;
+$grid-margin-medium: 40px !default;
+$grid-margin-small: 20px !default;
+$grid-margins: (
+  lg: $grid-margin-medium,
+  sMd: $grid-margin-small,
+) !default;
+
+$max-width: 1920px;

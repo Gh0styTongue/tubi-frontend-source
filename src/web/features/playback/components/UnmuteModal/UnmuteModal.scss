@@ -1,0 +1,57 @@
+@import 'theme/mixins';
+@import 'theme/variables';
+
+.unmuteModal {
+  &Container {
+    width: auto;
+    height: auto;
+    padding: 0;
+    border-radius: 16px;
+    border: 1px solid rgba($black-grey, 0.2);
+  }
+
+  &Content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 64px;
+    max-width: 480px;
+    text-align: center;
+
+    @include media-breakpoint-down('sMd') {
+      padding: 32px 24px;
+    }
+  }
+
+  &Title {
+    margin: 0 0 8px;
+    @include themify {
+      color: themed('primaryForeground');
+    }
+    @include web-header-small;
+
+    @include media-breakpoint-down('sMd') {
+      @include web-body-medium-strong;
+    }
+  }
+
+  &Description {
+    margin: 0 0 24px;
+    @include themify {
+      color: themed('transparentForeground75');
+    }
+    @include web-body-medium;
+
+    @include media-breakpoint-down('sMd') {
+      @include web-body-small;
+    }
+  }
+
+  &Button {
+    min-width: 200px;
+
+    @include media-breakpoint-down('sMd') {
+      width: 100%;
+    }
+  }
+}

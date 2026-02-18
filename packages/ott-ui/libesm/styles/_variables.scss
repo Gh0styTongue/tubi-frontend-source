@@ -1,0 +1,37 @@
+// TODO: should be
+// @import "~@tubitv/design/mixin"
+@import "../../../design/mixin";
+@import "../../../design/theme";
+
+$color-smoke-gray: #aeb6bc;
+$color-light-gray: #9b9b9b;
+$color-slate-gray: #707c86;
+$color-brand-gradient: linear-gradient(90deg, #FF501A 14%, #FB0003 43%, #B10777 91%);
+$color-primary-light: #f3c4b6;
+
+$font-size-base: 15px;
+$font-size-xxs: px-to-rem(20px);
+$font-size-xs: px-to-rem(22px);
+$font-size-sm: px-to-rem(27px);
+$font-size-md: px-to-rem(34px);
+$font-size-l: px-to-rem(43px);
+
+$font-weight-normal: 400;
+$font-weight-semi-bold: 600;
+$font-weight-medium-bold: 800;
+$font-weight-bold: 900;
+
+
+$grid-animation-duration: 500ms;
+$grid-animation-duration-with-throttler: 300ms;
+
+$button-animation-forward-duration: 100ms;
+$button-animation-backward-duration: 150ms;
+$button-animation-shrink-scale: 0.9;
+
+
+$expiration-offset: 11px;
+
+$z-index-toasts: 500;
+
+$default-ease: cubic-bezier(0.25, 0.1, 0.25, 1);

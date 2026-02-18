@@ -1,0 +1,45 @@
+@import '~@tubitv/web-ui/lib/styles/utils';
+
+@mixin gradient() {
+  position: absolute;
+  top: -48px;
+  bottom: 0;
+  left: -84px;
+  right: -84px;
+  opacity: 0.64;
+  transform: rotate(-180deg);
+  background: linear-gradient(360deg, #10141f 24.35%, rgba(28, 31, 41, 0) 100%),
+    radial-gradient(
+      102.48% 102.48% at -3.24% -15.58%,
+      #1814b2 0%,
+      rgba(153, 34, 121, 0.35) 53.65%,
+      rgba(24, 19, 172, 0) 100%
+    ),
+    radial-gradient(105.97% 105.97% at 50% 105.97%, #a60079 0%, #10141f 100%),
+    radial-gradient(
+      89.84% 191.65% at 108.14% -35.21%,
+      #323775 0%,
+      rgba(153, 34, 121, 0.35) 53.65%,
+      rgba(153, 34, 121, 0) 100%
+    ),
+    radial-gradient(57.38% 138.56% at 100% 0%, #992279 0%, rgba(153, 34, 121, 0.35) 53.65%, rgba(153, 34, 121, 0) 100%),
+    radial-gradient(67.25% 119.55% at 0% 0%, #0051be 0%, rgba(0, 89, 208, 0.3) 53.65%, rgba(0, 97, 226, 0) 90.1%),
+    radial-gradient(100% 100% at 50% 100%, #323775 0%, rgba(50, 55, 117, 0) 100%);
+}
+
+@mixin spinner() {
+  .spinnerWrapper {
+    @include flex-center;
+    flex: 1;
+    min-height: 500px;
+
+    @include media-mobile {
+      min-height: 300px;
+    }
+
+    .spinner {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+}

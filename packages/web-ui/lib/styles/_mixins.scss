@@ -1,0 +1,341 @@
+@use 'sass:math';
+@import './variables';
+@import './responsive';
+@import '../../../design/typography';
+
+@mixin box($height, $width: $height) {
+  height: $height;
+  width: $width;
+}
+
+/**
+ ************************************************
+ * Typography
+ ************************************************
+ *
+ */
+
+/* Ultra */
+@mixin ultra {
+  font-size: 36px;
+  line-height: 40px;
+  letter-spacing: -0.5px;
+}
+
+
+/* Shadow/Label */
+@mixin shadow-label {
+  text-shadow: 0px 2px 4px #00000014;
+}
+
+/**
+ ************************************************
+ * Misc.
+ ************************************************
+ *
+ */
+
+@mixin primary-link {
+  @include themify {
+    color: themed('primaryForeground');
+  }
+  transition: color 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    @include themify {
+      color: themed('primaryAccent');
+    }
+  }
+  &:active {
+    @include themify {
+      color: rgba(themed('primaryAccent'), 0.8);
+    }
+  }
+}
+
+@mixin container {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: $max-width;
+}
+
+// Breakpoint viewport sizes and media queries. Taken from bootstrap
+//
+// Breakpoints are defined as a map of (name: minimum width), order from small to large:
+//
+//    (xs: 0, sm: 375px, sMd: 540px, md: 768px, lg: 960px, xl: 1170px, xxl: 1440px)
+//
+// The map defined in the `$grid-breakpoints` global variable is used as the `$breakpoints` argument by default.
+
+// Name of the next breakpoint, or null for the last breakpoint.
+//
+//    >> breakpoint-next(sMd)
+//    md
+//    >> breakpoint-next(sMd, (xs: 0, sm: 375px, sMd: 540px, md: 768px, lg: 960px, xl: 1170px, xxl: 1440px))
+//    md
+//    >> breakpoint-next(sMd, $breakpoint-names: (xs sMd sm md lg xl))
+//    md
+@function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
+  $n: index($breakpoint-names, $name);
+
+  @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+}
+
+// Minimum breakpoint width. Null for the smallest (first) breakpoint.
+//
+//    >> breakpoint-min(sm, (xs: 0, sm: 375px, sMd: 540px, md: 768px, lg: 960px, xl: 1170px, xxl: 1440px))
+//    376px
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  $min: map-get($breakpoints, $name);
+
+  @return if($min != 0, $min, null);
+}
+
+// Maximum breakpoint width. Null for the largest (last) breakpoint.
+// The maximum value is calculated as the minimum of the next one less 0.1.
+//
+//    >> breakpoint-max(sMd, (xs: 0, sm: 375px, sMd: 540px, md: 768px, lg: 960px, xl: 1170px, xxl: 1440px))
+//    767px
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+  $next: breakpoint-next($name, $breakpoints);
+
+  @return if($next, breakpoint-min($next, $breakpoints) - 1px, null);
+}
+
+// Returns a blank string if smallest breakpoint, otherwise returns the name with a dash infront.
+// Useful for making responsive utilities.
+//
+//    >> breakpoint-infix(xs, (xs: 0, sm: 375px, sMd: 540px, md: 768px, lg: 960px, xl: 1170px, xxl: 1440px))
+//    ""  (Returns a blank string)
+//    >> breakpoint-infix(sm, (xs: 0, sm: 375px, sMd: 540px, md: 768px, lg: 960px, xl: 1170px, xxl: 1440px))
+//    "-sm"
+@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
+  @return if(breakpoint-min($name, $breakpoints) == null, '', '-#{$name}');
+}
+
+// Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
+// Makes the @content apply to the given breakpoint and wider.
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+// Media of at most the maximum breakpoint width. No query for the largest breakpoint.
+// Makes the @content apply to the given breakpoint and narrower.
+@mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+// Media that spans multiple breakpoint widths.
+// Makes the @content apply between the min and max breakpoints
+@mixin media-breakpoint-between($lower, $upper, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-max($lower, $breakpoints);
+  $max: breakpoint-max($upper, $breakpoints);
+
+  @media (min-width: $min) and (max-width: $max) {
+    @content;
+  }
+}
+
+@mixin media-mobile-or-tablet {
+  @include media-breakpoint-down('lg') {
+    @content;
+  }
+}
+
+@mixin media-small-desktop {
+  @include media-breakpoint-between('lg', 'xl') {
+    @content;
+  }
+}
+
+@mixin media-desktop {
+  @include media-breakpoint-up('xl') {
+    @content;
+  }
+}
+@mixin media-tablet {
+  @include media-breakpoint-between('sMd', 'lg') {
+    @content;
+  }
+}
+@mixin media-small-mobile {
+  @include media-breakpoint-down('sm') {
+    @content;
+  }
+}
+@mixin media-mobile {
+  @include media-breakpoint-down('sMd') {
+    @content;
+  }
+}
+@mixin media-large-mobile {
+  @include media-breakpoint-down('md') {
+    @content;
+  }
+}
+
+@mixin media-desktop-large ($breakpoints: $grid-breakpoints) {
+  @include media-breakpoint-up('xxl') {
+    @content;
+  }
+}
+
+@mixin media-not-large-mobile {
+  @include media-breakpoint-up('lg') {
+    @content;
+  }
+}
+
+@mixin media-not-mobile {
+  @include media-breakpoint-up('md') {
+    @content;
+  }
+}
+
+// Media between the breakpoint's minimum and maximum widths.
+// No minimum for the smallest breakpoint, and no maximum for the largest one.
+// Makes the @content apply only to the given breakpoint, not viewports any wider or narrower.
+@mixin media-breakpoint-only($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  $max: breakpoint-max($name, $breakpoints);
+
+  @if $min != null and $max != null {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else if $max == null {
+    @include media-breakpoint-up($name);
+  } @else if $min == null {
+    @include media-breakpoint-down($name);
+  }
+}
+
+@mixin make-col-offset($size, $columns: $grid-columns) {
+  margin-left: percentage(math.div($size, $columns));
+}
+
+@mixin make-col-push($size, $columns: $grid-columns) {
+  left: if($size > 0, percentage(math.div($size, $columns)), auto);
+}
+
+@mixin make-col-pull($size, $columns: $grid-columns) {
+  right: if($size > 0, percentage(math.div($size, $columns)), auto);
+}
+
+@mixin make-col-modifier($type, $size, $columns) {
+  // Work around the lack of dynamic mixin @include support (https://github.com/sass/sass/issues/626)
+  @if $type == push {
+    @include make-col-push($size, $columns);
+  } @else if $type == pull {
+    @include make-col-pull($size, $columns);
+  } @else if $type == offset {
+    @include make-col-offset($size, $columns);
+  }
+}
+
+// used as a utility function along grid overlay to make fine touch positioning adjustment to elements
+// params $move-up default 0
+// params $move-right default 0
+
+@mixin adjust-to-grid($move-up: 0, $move-right: 0) {
+  position: relative;
+  bottom: $move-up;
+  left: $move-right;
+}
+
+// Maintain the aspect ratio: https://stackoverflow.com/a/10441480
+@mixin aspect-ratio($width, $height) {
+  padding-top: math.div($height, $width) * 100%;
+}
+
+@mixin flex-center() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-column() {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin link-button() {
+  width: 312px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include themify {
+    color: themed('primaryBackground');
+    background: themed('primaryAccent');
+  }
+  border-radius: $rounded-full;
+  @include web-body-medium;
+  font-weight: 900;
+
+  &:hover {
+    filter: brightness(1.2);
+  }
+}
+
+@mixin redesigned-content-detail-padding {
+  padding: 0 $redesigned-content-detail-margin-base;
+  @include media-mobile {
+    padding: 0 $redesigned-content-detail-margin-small;
+  }
+}
+
+@mixin row-margin-in-redesigned-content-detail {
+  margin-right: $redesigned-content-detail-margin-base - $grid-gutter-width-base * 0.5;
+  margin-left: $redesigned-content-detail-margin-base - $grid-gutter-width-base * 0.5;
+  @include media-mobile {
+    margin-right: $redesigned-content-detail-margin-small - $grid-gutter-width-small * 0.5;
+    margin-left: $redesigned-content-detail-margin-small - $grid-gutter-width-small * 0.5;
+  }
+}
+
+@mixin prev-next-icon-in-row-of-redesigned-content-detail {
+  width: 28px + $grid-gutter-width-base;
+  svg {
+    width: 28px;
+    height: 28px;
+  }
+  @include media-mobile {
+    width: 18px + $grid-gutter-width-small;
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
+
+@mixin text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin text-ellipsis-multiline($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

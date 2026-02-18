@@ -1,0 +1,33 @@
+@import "theme/mixins";
+@import 'theme/variables';
+
+.accountList {
+  display: flex;
+  gap: 8px;
+  li {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 148px;
+    height: 112px;
+    border-radius: 12px;
+    @include themify {
+      background: themed('transparentForeground10');
+    }
+    > * + * {
+      margin-top: 4px;
+    }
+    span {
+      @include web-body-large-strong;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+

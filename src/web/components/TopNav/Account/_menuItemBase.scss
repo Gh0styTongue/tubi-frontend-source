@@ -1,0 +1,60 @@
+@import 'theme/variables';
+@import '~@tubitv/web-ui/lib/styles/utils';
+
+@mixin menuItemBase {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 12px;
+  gap: 8px;
+  cursor: pointer;
+  transition: background .2s ease;
+  outline: none;
+
+  &:hover {
+    @include themify {
+      background: themed('transparentForeground10');
+    }
+  }
+
+  &:focus-visible {
+    @include themify {
+      background: themed('transparentForeground10');
+      box-shadow: 0 0 0 2px themed('primaryAccent');
+    }
+  }
+}
+
+// Mixin for common 24px icon styling used across menu items
+@mixin menuItemIcon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  @include themify {
+    color: themed('primaryForeground');
+  }
+}
+
+// Mixin for mobile responsive sizing
+@mixin menuItemMobile {
+  @include media-mobile {
+    min-height: 52px;
+    padding: 14px 12px;
+  }
+}
+
+// Mixin for text container that holds title/subtitle
+@mixin menuItemTextContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+// Mixin for primary text in menu items
+@mixin menuItemPrimaryText {
+  @include web-body-small-strong;
+  @include themify {
+    color: themed('primaryForeground');
+  }
+}

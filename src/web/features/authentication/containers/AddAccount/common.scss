@@ -1,0 +1,105 @@
+@import "theme/mixins";
+@import 'theme/variables';
+
+$wrapperWidth: 472px;
+$mainWidth: 335px;
+$rowSpacing: 36px;
+
+.wrapper {
+  @include themify {
+    background: themed('customMultipleAccountsGradient');
+  }
+  color: $white;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 136px auto 80px;
+    width: $wrapperWidth;
+    @include media-mobile {
+      width: $mainWidth;
+    }
+    > * + * {
+      margin: $rowSpacing 0 0;
+    }
+  }
+  .container > header {
+    text-align: center;
+    .circleIcon {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 24px;
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+    h1 {
+      @include web-header-small;
+      margin: 0;
+    }
+    p {
+      margin: 0;
+      @include web-body-medium;
+      @include themify {
+        color: themed('transparentForeground75');
+      }
+    }
+    h1 + p {
+      margin-top: 8px;
+    }
+  }
+  > p {
+    margin: 0;
+  }
+  main {
+    width: $mainWidth;
+    > * + * {
+      margin: $rowSpacing 0 0;
+    }
+    form {
+      width: 335px;
+      > * + * {
+        margin: 8px 0 0;
+      }
+      button[type="submit"] {
+        margin-top: 16px;
+        width: 100%;
+        &:not(:disabled) {
+          color: map-get($themes, 'defaultDark', 'primaryBackground');
+        }
+      }
+    }
+  }
+}
+
+.actions {
+  > div {
+    width: $mainWidth;
+    // Sign in
+    > div:last-child {
+      margin-top: $rowSpacing;
+      button > * {
+        color: map-get($themes, 'defaultDark', 'primaryAccent');
+      }
+    }
+  }
+  // SSO & Register
+  button > * {
+    color: map-get($themes, 'defaultDark', 'primaryBackground');
+  }
+}
+
+.addAccount a {
+  color: $white;
+  @include web-body-small-strong;
+  &:hover {
+    color: map-get($themes, 'defaultDark', 'primaryAccent');
+    opacity: 1;
+  }
+}

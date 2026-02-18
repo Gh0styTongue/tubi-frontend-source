@@ -1,0 +1,40 @@
+@import 'theme/mixins';
+@import 'web/styles/mixins';
+
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 16px;
+
+  @include themify {
+    background: themed('solidSurface10');
+  }
+
+  @include media-breakpoint-up('sMd') {
+    justify-content: center;
+    width: 792px;
+    max-width: calc(100vw - 32px);
+    height: auto;
+    border-radius: 16px;
+  }
+}
+
+.closeBtn {
+  @include modal-close-btn;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 480px;
+}
+

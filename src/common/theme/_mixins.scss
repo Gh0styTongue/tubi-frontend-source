@@ -1,0 +1,298 @@
+@use "sass:math";
+
+@import "~@adrise/web-ui/lib/styles/mixins";
+
+@import "./variables";
+
+// todo- resolve px or rem; resolve font-face or font-weight;
+@mixin font-67-64-bold() {
+  font-size: 67px;
+  font-weight: $font-weight-bold;
+  line-height: 64px;
+  letter-spacing: -1px;
+}
+
+@mixin font-48-64-bold() {
+  font-size: 48px;
+  font-weight: $font-weight-bold;
+  line-height: 64px;
+  letter-spacing: 0.21px;
+}
+
+@mixin font-48-56-bold() {
+  font-size: 48px;
+  font-weight: $font-weight-bold;
+  line-height: 56px;
+  letter-spacing: 0.3px;
+}
+
+@mixin font-43-48-bold() {
+  font-size: 43px;
+  font-weight: $font-weight-bold;
+  line-height: 48px;
+  letter-spacing: -1px;
+}
+
+@mixin font-27-36-bold() {
+  font-size: 27px;
+  font-weight: $font-weight-bold;
+  line-height: 36px;
+  letter-spacing: 0.3px;
+}
+
+@mixin font-36-40-bold() {
+  font-size: 36px;
+  font-weight: $font-weight-bold;
+  line-height: 40px;
+  letter-spacing: -0.5px;
+}
+
+@mixin font-27-32-bold() {
+  font-size: 27px;
+  font-weight: $font-weight-bold;
+  line-height: 32px;
+  letter-spacing: 0.5px;
+}
+
+@mixin font-24-32-bold() {
+  font-size: 24px;
+  font-weight: $font-weight-bold;
+  line-height: 32px;
+  letter-spacing: -0.5px;
+}
+
+@mixin font-27-32-light() {
+  font-size: 27px;
+  font-weight: $font-weight-light;
+  line-height: 32px;
+  letter-spacing: 0.5px;
+}
+
+@mixin font-22-32-semibold() {
+  font-size: 22px;
+  font-weight: $font-weight-semibold;
+  line-height: 32px;
+  letter-spacing: 0.5px;
+}
+
+@mixin font-20-24-semibold() {
+  font-size: 20px;
+  font-weight: $font-weight-semibold;
+  line-height: 24px;
+  letter-spacing: 0.3px;
+}
+
+@mixin font-18-24-semibold() {
+  font-size: 18px;
+  font-weight: $font-weight-semibold;
+  line-height: 24px;
+  letter-spacing: 0.3px;
+}
+
+@mixin font-18-24-bold() {
+  font-weight: $font-weight-bold;
+
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+@mixin font-22-32() {
+  font-size: 22px;
+  font-weight: $font-weight-normal;
+  line-height: 32px;
+  letter-spacing: 0.37px;
+}
+
+@mixin font-12-16() {
+  font-weight: 800;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+@mixin font-14-20() {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@mixin font-16-20() {
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+@mixin font-16-24() {
+  font-weight: $font-weight-medium;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@mixin font-16-24-bold() {
+  font-weight: $font-weight-bold;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@mixin font-20-24() {
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+}
+
+@mixin font-24-32() {
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.2px;
+}
+
+@mixin font-18-24() {
+  font-size: 18px;
+  font-weight: $font-weight-normal;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+@mixin font-14-24() {
+  font-size: 14px;
+  font-weight: $font-weight-normal;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+@mixin font-14-24-bold() {
+  font-size: 14px;
+  font-weight: $font-weight-bold;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+@mixin font-13-16() {
+  font-weight: 900;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+@mixin font-11-16-bold() {
+  font-size: 11px;
+  font-weight: $font-weight-bold;
+  line-height: 16px;
+  letter-spacing: 0.5px;
+}
+
+@mixin font-11-16() {
+  font-size: 11px;
+  font-weight: $font-weight-normal;
+  line-height: 16px;
+  letter-spacing: 0.5px;
+}
+
+@mixin font-32-40-bold() {
+  font-size: 32px;
+  font-weight: $font-weight-bold;
+  line-height: 40px;
+  letter-spacing: 0.5px;
+}
+
+@mixin background-primary {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-image: url("~common/theme/images/DarkPurpleBackground.jpg");
+  background-color: $ottBg;
+}
+
+@mixin ott-h1() {
+  font-size: $ott-xl;
+  font-weight: $font-weight-bold;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+}
+
+@mixin aspect-16-by-9() {
+  padding: (math.div(9, 16) * 0.5 * 100%) 0;
+}
+
+
+@mixin position-center($position: absolute) {
+  position: $position;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin hide-arrows-from-number-input {
+
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+}
+
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Badge styles mixin
+// https://www.figma.com/design/lxm0FLoXqy1Yc9b2D7BY0X/-TV--Signals-of-Trust?node-id=174-2795&p=f&m=dev
+@mixin badge-base-styles {
+  @include ott-body-small;
+  padding: convert1080pxToREM(4px) convert1080pxToREM(8px);
+  border-radius: convert1080pxToREM(12px);
+
+  @include themify {
+    color: themed('primaryForeground');
+    background-color: themed('transparentBackground75');
+    box-shadow: 0 0 0 convert1080pxToREM(2px) themed('transparentForeground20');
+  }
+
+  img {
+    width: convert1080pxToREM(28px);
+    height: convert1080pxToREM(28px);
+  }
+}
+@mixin badge-container-styles {
+  position: absolute;
+  top: convert1080pxToREM(16px);
+  left: convert1080pxToREM(16px);
+  display: flex;
+  & > * + * {
+    margin-left: convert1080pxToREM(8px);
+  }
+}
+
+// Text ellipsis mixin
+// Truncates text with ellipsis on overflow
+@mixin text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Multi-line text ellipsis mixin
+// Truncates text with ellipsis after specified number of lines
+// @param $lines - number of lines to show before truncating (default: 2)
+@mixin text-ellipsis-multiline($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

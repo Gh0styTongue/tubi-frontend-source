@@ -1,0 +1,46 @@
+@import "~@tubitv/web-ui/lib/styles/utils";
+
+.accountDropdownContainer {
+  padding-top: 24px;
+  width: 312px;
+  @include media-breakpoint-down('md') {
+    padding-top: 64px;
+  }
+}
+
+.accountDropdownOption {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 24px;
+
+  > div:first-child {
+    flex-shrink: 0;
+  }
+
+  .label {
+    width: calc(100% - 16px - 24px); // padding right & arrowDown icon width
+    > div:first-child {
+      line-height: 1.2em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  &.kidAccount {
+    .label {
+      display: flex;
+      flex-direction: column;
+      line-height: 14px;
+      height: 24px;
+    }
+
+    .kidsLogo {
+      width: 32px;
+      position: absolute;
+      top: 14px;
+    }
+  }
+}

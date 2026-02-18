@@ -1,0 +1,32 @@
+@import "theme/mixins";
+
+.header {
+  @include web-header-small;
+  text-align: center;
+  margin-bottom: 8px;
+
+  @include themify {
+    color: themed('primaryForeground');
+  }
+}
+
+.subheader {
+  @include web-body-large;
+  text-align: center;
+  margin-bottom: 32px;
+  opacity: 0.75;
+
+  @include themify {
+    color: themed('primaryForeground');
+  }
+}
+
+.pinInputWrapper {
+  margin-bottom: 32px;
+}
+
+.button {
+  margin-bottom: 16px;
+  width: 100%;
+  max-width: 312px;
+}

@@ -1,0 +1,27 @@
+@import "theme/mixins";
+@import 'theme/variables';
+
+.tabs {
+  @include themify {
+    background: themed('transparentForeground10');
+    color: themed('transparentForeground75');
+  }
+  border-radius: convert1080pxToREM(999px);
+  display: flex;
+  width: fit-content;
+  @include web-body-medium-strong;
+  li {
+    cursor: pointer;
+    list-style: none;
+    flex: 1;
+    padding: 6px 24px;
+    border-radius: 999px;
+    white-space: nowrap;
+    &.__active {
+      @include themify {
+        background: themed('primaryForeground');
+      }
+      color: map-get($themes, 'defaultDark', 'primaryBackground');
+    }
+  }
+}

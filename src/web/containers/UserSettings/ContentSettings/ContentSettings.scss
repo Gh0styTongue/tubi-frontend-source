@@ -1,0 +1,108 @@
+@import "theme/mixins";
+@import "theme/variables";
+@import "~@tubitv/web-ui/lib/styles/utils";
+
+.contentSettings {
+  width: 472px;
+  max-width: calc(100vw - 48px);
+  margin: 168px 24px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.accountSelectorWrapper {
+  padding-top: 24px;
+  @include media-breakpoint-down('md') {
+    padding-top: 64px;
+  }
+}
+
+.header {
+  @include web-header-small;
+  font-weight: bold;
+  margin: 40px 0 0 0;
+  text-align: center;
+  width: max-content;
+  @include media-breakpoint-down('sm') {
+    width: auto;
+  }
+
+  &.withAccountDropdown {
+    margin-top: 24px;
+  }
+}
+
+.subheader {
+  @include web-body-medium();
+  @include themify {
+    color: themed('transparentForeground75');
+  }
+  margin: 8px 0 0 0;
+  text-align: center;
+  padding: 0;
+}
+
+.formContainer {
+  width: 100%;
+  margin-top: 32px;
+
+  fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+}
+
+.dropdownWrapper {
+  width: 312px;
+  margin: 0 auto;
+}
+
+.submitButton {
+  width: 312px;
+  margin: 24px auto 0;
+  display: block;
+}
+
+.divider {
+  width: 632px;
+  max-width: calc(100vw - 48px);
+  height: 1px;
+  @include themify {
+    background: themed('transparentForeground10');
+  }
+  margin: 48px 0;
+}
+
+.pinSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pinHeader {
+  @include web-header-small;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+}
+
+.pinSubheader {
+  @include web-body-medium();
+  @include themify {
+    color: themed('transparentForeground75');
+  }
+  margin: 8px 0 24px 0;
+  text-align: center;
+}
+
+.pinButton {
+  width: 312px;
+}
+
+.error {
+  margin-bottom: 16px;
+}

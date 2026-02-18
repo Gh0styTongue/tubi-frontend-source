@@ -1,0 +1,76 @@
+@use 'sass:math';
+@import 'theme/_mixins';
+@import 'theme/variables';
+@import '~@tubitv/web-ui/lib/styles/utils';
+
+$assets-base-path: 'https://mcdn.tubitv.com/tubitv-assets/img/watch-schedule';
+$gutter-gap-sm: 24px;
+$gutter-gap-md: 65px;
+$max-width: 870px;
+$button-width: 228px;
+
+@function assets($file) {
+  @return url($assets-base-path + '/' + $file);
+}
+
+@mixin page-gutter($gutter-gap) {
+  margin-left: $gutter-gap;
+  margin-right: $gutter-gap;
+}
+
+@mixin absolute-full() {
+  @include box(100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@mixin responsive-image() {
+  position: relative;
+
+  img {
+    @include absolute-full();
+    object-fit: cover;
+  }
+}
+
+@mixin live-and-vod-sections() {
+  h2 {
+    font-size: 28px;
+    line-height: 40px;
+
+    @include media-mobile {
+      font-size: 24px;
+      line-height: 32px;
+    }
+  }
+
+  p {
+    max-width: 538px;
+  }
+
+  .content {
+    margin-top: 40px;
+
+    &.withSpinner {
+      height: 274px;
+    }
+  }
+
+  .withSpinner {
+    @include flex-center();
+  }
+}
+
+.main {
+  max-width: $max-width;
+  margin: 0 auto;
+
+  @media (max-width: #{$max-width + $gutter-gap-md * 2}) {
+    @include page-gutter($gutter-gap-md);
+  }
+
+  @include media-breakpoint-down('sMd') {
+    @include page-gutter($gutter-gap-sm);
+  }
+}

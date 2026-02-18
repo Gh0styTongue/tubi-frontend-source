@@ -1,0 +1,74 @@
+@import "theme/mixins";
+@import "~@tubitv/web-ui/lib/styles/variables";
+
+.pinInput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.hiddenInput {
+  // Visually hide but keep accessible
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 1px;
+  height: 1px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.displayBoxes {
+  display: flex;
+  gap: 8px;
+  cursor: text;
+}
+
+.box {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: border-color 0.2s ease;
+
+  @include themify {
+    border-color: themed('transparentForeground20');
+    background-color: transparent;
+  }
+
+  &.error {
+    @include themify {
+      border-color: themed('statusAlert');
+    }
+  }
+}
+
+.dot {
+  @include web-body-medium;
+  @include themify {
+    color: themed('primaryForeground');
+  }
+  line-height: 1;
+  user-select: none;
+}
+
+.errorMessage {
+  @include web-body-extra-small;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 248px;
+
+  @include themify {
+    background-color: themed('statusAlert');
+    color: themed('primaryForeground');
+  }
+}

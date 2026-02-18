@@ -1,0 +1,138 @@
+@import "theme/mixins";
+@import "~@tubitv/web-ui/lib/styles/variables";
+
+.main {
+  position: fixed;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  left: 0;
+  top: 0;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  @include themify {
+    background-color: themed('transparentScrim');
+  }
+}
+
+.modal {
+  position: relative;
+  z-index: 10001;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  padding: 80px 16px;
+
+  @include themify {
+    background-color: themed('solidSurface10');
+  }
+
+  @include media-breakpoint-up('sMd') {
+    justify-content: center;
+    width: 792px;
+    height: auto;
+    border-radius: 16px;
+  }
+}
+
+.content,
+.lockedContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 480px;
+}
+
+.header {
+  @include web-header-small;
+  text-align: center;
+  margin-bottom: 8px;
+
+  @include themify {
+    color: themed('primaryForeground');
+  }
+}
+
+.subheader {
+  @include web-body-large;
+  text-align: center;
+  margin-bottom: 32px;
+  opacity: 0.75;
+
+  @include themify {
+    color: themed('primaryForeground');
+  }
+}
+
+.pinInputWrapper {
+  margin-bottom: 32px;
+}
+
+.button {
+  margin-bottom: 16px;
+  width: 100%;
+  max-width: 312px;
+  border-radius: 8px;
+}
+
+.forgotPINLink {
+  @include web-body-medium-strong;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 8px;
+
+  @include themify {
+    color: themed('primaryForeground');
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+// Transitions
+.enter {
+  opacity: 0;
+}
+
+.enterActive {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+
+.appear {
+  opacity: 0;
+}
+
+.appearActive {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+
+.exit {
+  opacity: 1;
+}
+
+.exitActive {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+.exitDone {
+  opacity: 0;
+}

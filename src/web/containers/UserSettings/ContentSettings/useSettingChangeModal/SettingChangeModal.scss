@@ -1,0 +1,62 @@
+@import 'theme/mixins';
+
+$button-target-width: 236px;
+
+.textSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.header {
+  @include web-header-small;
+
+  @include themify {
+    color: themed('primaryForeground');
+  }
+
+  margin: 0;
+}
+
+.subheader {
+  @include web-body-large;
+
+  @include themify {
+    color: themed('transparentForeground75');
+  }
+
+  margin: 0;
+}
+
+.alert {
+  @include web-body-medium;
+
+  @include themify {
+    color: themed('transparentForeground75');
+  }
+
+  margin: 0;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+
+  &.singleButton {
+    button {
+      min-width: $button-target-width;
+    }
+  }
+
+  &.twoButtons {
+    button {
+      flex: 1;
+      max-width: $button-target-width;
+    }
+  }
+}

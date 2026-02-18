@@ -1,0 +1,47 @@
+@import 'theme/mixins';
+@import 'theme/variables';
+
+.signOutModal {
+  background-color: #161324;
+}
+
+.title {
+  @include web-header-small;
+  text-align: center;
+  margin: 0 0 32px;
+  max-width: 480px;
+
+  @include themify {
+    color: themed('primaryForeground');
+  }
+}
+
+.kidsList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px;
+  max-width: 480px;
+
+  > li {
+    width: 100px;
+
+    @include themify {
+      color: themed('primaryForeground');
+    }
+  }
+}
+
+.buttonsContainer {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.signOutButton,
+.cancelButton {
+  min-width: 236px;
+}

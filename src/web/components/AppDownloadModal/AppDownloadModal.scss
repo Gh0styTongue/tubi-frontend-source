@@ -1,0 +1,234 @@
+@import 'theme/mixins';
+@import 'theme/variables';
+@import '~@tubitv/web-ui/lib/styles/variables';
+@import '~@tubitv/web-ui/lib/styles/utils';
+
+.slideUpEnter {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.slideUpEnterActive {
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+}
+
+.slideUpEnterDone {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slideUpExit {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slideUpExitActive {
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.4s ease-in, opacity 0.4s ease-in;
+}
+
+.slideUpExitDone {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+@media (min-width: 768px) {
+  .slideUpEnter {
+    transform: translate(-50%, calc(-50% + 100vh));
+  }
+
+  .slideUpEnterActive {
+    transform: translate(-50%, -50%);
+  }
+
+  .slideUpEnterDone {
+    transform: translate(-50%, -50%);
+  }
+
+  .slideUpExit {
+    transform: translate(-50%, -50%);
+  }
+
+  .slideUpExitActive {
+    transform: translate(-50%, calc(-50% + 100vh));
+  }
+
+  .slideUpExitDone {
+    transform: translate(-50%, calc(-50% + 100vh));
+  }
+}
+
+.modal {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 98vw;
+  border-radius: 16px 16px 0 0;
+  z-index: 1;
+
+  background:
+    linear-gradient(180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.5) 15%,
+        rgba(0, 0, 0, 1) 40%),
+    linear-gradient(90deg,
+        #5700ED 10%,
+        #8B19F5 25%,
+        #A06995 40%,
+        #B779B8 50%,
+        #A06995 60%,
+        #5E00E8 75%,
+        #742BFD 90%),
+    #000000;
+  
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%;
+  
+  background-position:
+    0 0,
+    0 0,
+    0 0;
+  
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  @media (min-width: 768px) {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: auto;
+    height: auto;
+    max-width: 632px;
+    border-radius: 16px;
+    transform: translate(-50%, -50%);
+    bottom: auto;
+    right: auto;
+  }
+}
+
+.closeBtn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 1;
+    cursor: pointer;
+
+    @include themify {
+      background-color: #ffffff;
+    }
+    @include box(24px);
+    @include flex-center();
+    border-radius: 50%;
+
+    svg {
+      font-size: 16px;
+    }
+  }
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 48px 24px 24px;
+  flex: 1;
+
+  @media (min-width: 768px) {
+    padding: 48px;
+  }
+}
+
+.modal .content .logo {
+  @include flex-center();
+  width: calc((80 / 350) * 100vw);
+  height: calc((80 / 350) * 100vw);
+  min-width: 80px;
+  min-height: 80px;
+  border-radius: 16px;
+  border: 1.9px solid #666;
+  background: linear-gradient(15deg, #45009d 25.51%, #8c00e5 90.82%);
+  box-shadow: -1px 3px 5px 1px rgb(0, 0, 0, 0.4);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+
+  svg {
+    width: 64px;
+    height: auto;
+  }
+}
+
+.modal .content .title {
+  font-family: $tubi-sans-font-family;
+  width: 90%;
+  color: $white;
+  margin: calc((12 / 350) * 100vw) auto calc((8 / 350) * 100vw);
+  letter-spacing: 0.5px;
+  text-align: center;
+  font-size: calc((20 / 350) * 100vw);
+
+  @media (min-width: 768px) {
+    font-size: calc((20 / 350) * 632px);
+  }
+}
+
+.content .line {
+  font-family: $inter-font-family;
+  letter-spacing: 0.25px;
+  color: #BBB;
+  margin: calc((8 / 350) * 100vw) auto;
+  text-align: center;
+  font-size: calc((12 / 350) * 100vw);
+
+  @media (min-width: 768px) {
+    font-size: calc((12 / 350) * 632px);
+  }
+}
+
+.content .download {
+  @include shadow-label();
+  font-family: $inter-font-family;
+  @include themify {
+    background-color: themed('primaryAccent');
+    color: themed('primaryBackground');
+  }
+  padding: 8px 16px;
+  border: 0;
+  border-radius: $rounded-full;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  width: 100%;
+  margin: calc((12 / 350) * 100vw) 0;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  font-size: calc((14 / 350) * 100vw);
+  font-weight: 700;
+
+  @media (min-width: 768px) {
+    font-size: calc((14 / 350) * 632px);
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+}

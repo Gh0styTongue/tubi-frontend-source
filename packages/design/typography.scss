@@ -1,0 +1,307 @@
+@use "sass:math";
+
+// convert from px to rem.
+// px measurements must be based on 1080p resolution
+@function convert1080pxToREM($size) {
+  $value: math.div($size, 15px) * 1rem;
+  // Turn 0rem into 0
+  @if ($value == 0) {
+    $value: 0;
+  }
+  @return $value;
+}
+
+@mixin media-mobile {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+$tubi-sans-font-family: 'TubiStans', 'Helvetica Neue', sans-serif;
+$inter-font-family: 'Inter', 'Helvetica Neue', sans-serif;
+
+$ott-display-medium-line-height: convert1080pxToREM(84px);
+
+:root {
+  --web-body-medium-line-height: 24px;
+  @include media-mobile {
+    --web-body-medium-line-height: 20px;
+  }
+}
+$web-body-medium-line-height: var(--web-body-medium-line-height);
+
+// Generated from https://github.com/adRise/design-tokens/blob/main/src/tokens/typography.tokens.json
+@mixin ott-display-large {
+  font-family: $tubi-sans-font-family;
+  font-size: convert1080pxToREM(148px);
+  font-weight: 900;
+  letter-spacing: convert1080pxToREM(0px);
+  line-height: convert1080pxToREM(148px);
+};
+
+@mixin ott-display-medium {
+  font-family: $tubi-sans-font-family;
+  font-size: convert1080pxToREM(86px);
+  font-weight: 900;
+  letter-spacing: convert1080pxToREM(0px);
+  line-height: $ott-display-medium-line-height;
+};
+
+@mixin ott-header-large {
+  font-family: $tubi-sans-font-family;
+  font-size: convert1080pxToREM(72px);
+  font-weight: 900;
+  letter-spacing: convert1080pxToREM(0px);
+  line-height: convert1080pxToREM(80px);
+};
+
+@mixin ott-header-medium {
+  font-family: $tubi-sans-font-family;
+  font-size: convert1080pxToREM(60px);
+  font-weight: 900;
+  letter-spacing: convert1080pxToREM(0px);
+  line-height: convert1080pxToREM(72px);
+};
+
+@mixin ott-header-small {
+  font-family: $tubi-sans-font-family;
+  font-size: convert1080pxToREM(48px);
+  font-weight: 900;
+  letter-spacing: convert1080pxToREM(-0.5px);
+  line-height: convert1080pxToREM(56px);
+};
+
+@mixin ott-subheader-large {
+  font-family: $tubi-sans-font-family;
+  font-size: convert1080pxToREM(48px);
+  font-weight: 900;
+  letter-spacing: convert1080pxToREM(0px);
+  line-height: convert1080pxToREM(56px);
+};
+
+@mixin ott-subheader-medium {
+  font-family: $tubi-sans-font-family;
+  font-size: convert1080pxToREM(36px);
+  font-weight: 900;
+  letter-spacing: convert1080pxToREM(0px);
+  line-height: convert1080pxToREM(40px);
+};
+
+@mixin ott-subheader-small {
+  font-family: $inter-font-family;
+  font-size: convert1080pxToREM(28px);
+  font-weight: 700;
+  letter-spacing: convert1080pxToREM(0px);
+  line-height: convert1080pxToREM(40px);
+};
+
+@mixin ott-body-large-strong {
+  font-family: $inter-font-family;
+  font-size: convert1080pxToREM(34px);
+  font-weight: 700;
+  letter-spacing: convert1080pxToREM(0px);
+  line-height: convert1080pxToREM(40px);
+};
+
+@mixin ott-body-large {
+  font-family: $inter-font-family;
+  font-size: convert1080pxToREM(34px);
+  font-weight: 500;
+  letter-spacing: convert1080pxToREM(0px);
+  line-height: convert1080pxToREM(40px);
+};
+
+@mixin ott-body-medium-strong {
+  font-family: $inter-font-family;
+  font-size: convert1080pxToREM(28px);
+  font-weight: 700;
+  letter-spacing: convert1080pxToREM(0px);
+  line-height: convert1080pxToREM(40px);
+};
+
+@mixin ott-body-medium {
+  font-family: $inter-font-family;
+  font-size: convert1080pxToREM(28px);
+  font-weight: 500;
+  letter-spacing: convert1080pxToREM(-0.5px);
+  line-height: convert1080pxToREM(40px);
+};
+
+@mixin ott-body-small-strong {
+  font-family: $inter-font-family;
+  font-size: convert1080pxToREM(24px);
+  font-weight: 700;
+  letter-spacing: convert1080pxToREM(0px);
+  line-height: convert1080pxToREM(32px);
+};
+
+@mixin ott-body-small {
+  font-family: $inter-font-family;
+  font-size: convert1080pxToREM(24px);
+  font-weight: 500;
+  letter-spacing: convert1080pxToREM(0px);
+  line-height: convert1080pxToREM(32px);
+};
+
+@mixin ott-body-extra-small-strong {
+  font-family: $inter-font-family;
+  font-size: convert1080pxToREM(18px);
+  font-weight: 700;
+  letter-spacing: convert1080pxToREM(0px);
+  line-height: convert1080pxToREM(28px);
+};
+
+@mixin ott-body-extra-small {
+  font-family: $inter-font-family;
+  font-size: convert1080pxToREM(18px);
+  font-weight: 500;
+  letter-spacing: convert1080pxToREM(0px);
+  line-height: convert1080pxToREM(28px);
+};
+
+@mixin web-header-large {
+  font-family: $tubi-sans-font-family;
+  font-size: 56px;
+  font-weight: 900;
+  letter-spacing: 0px;
+  line-height: 64px;
+  @include media-mobile {
+    font-size: 36px;
+    line-height: 40px;
+  }
+};
+
+@mixin web-header-medium {
+  font-family: $tubi-sans-font-family;
+  font-size: 48px;
+  font-weight: 900;
+  letter-spacing: 0px;
+  line-height: 56px;
+  @include media-mobile {
+    font-size: 24px;
+    line-height: 32px;
+  }
+};
+
+@mixin web-header-small {
+  font-family: $tubi-sans-font-family;
+  font-size: 36px;
+  font-weight: 900;
+  letter-spacing: 0px;
+  line-height: 40px;
+  @include media-mobile {
+    font-size: 20px;
+    line-height: 28px;
+  }
+};
+
+@mixin web-subheader-medium {
+  font-family: $tubi-sans-font-family;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 0px;
+  line-height: 32px;
+  @include media-mobile {
+    font-size: 20px;
+    line-height: 24px;
+  }
+};
+
+@mixin web-subheader-small {
+  font-family: $inter-font-family;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0px;
+  line-height: 24px;
+  @include media-mobile {
+    font-size: 16px;
+    line-height: 20px;
+  }
+};
+
+@mixin web-body-large-strong {
+  font-family: $inter-font-family;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0px;
+  line-height: 24px;
+  @include media-mobile {
+    font-size: 16px;
+    line-height: 20px;
+  }
+};
+
+@mixin web-body-large {
+  font-family: $inter-font-family;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  line-height: 24px;
+  @include media-mobile {
+    font-size: 16px;
+    line-height: 20px;
+  }
+};
+
+@mixin web-body-medium-strong {
+  font-family: $inter-font-family;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0px;
+  line-height: $web-body-medium-line-height;
+  @include media-mobile {
+    font-size: 14px;
+  }
+};
+
+@mixin web-body-medium {
+  font-family: $inter-font-family;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  line-height: 24px;
+  @include media-mobile {
+    font-size: 14px;
+    line-height: 20px;
+  }
+};
+
+@mixin web-body-small-strong {
+  font-family: $inter-font-family;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0px;
+  line-height: 20px;
+  @include media-mobile {
+    font-size: 12px;
+    line-height: 16px;
+  }
+};
+
+@mixin web-body-small {
+  font-family: $inter-font-family;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  line-height: 20px;
+  @include media-mobile {
+    font-size: 12px;
+    line-height: 16px;
+  }
+};
+
+@mixin web-body-extra-small-strong {
+  font-family: $inter-font-family;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0px;
+  line-height: 16px;
+};
+
+@mixin web-body-extra-small {
+  font-family: $inter-font-family;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  line-height: 16px;
+};

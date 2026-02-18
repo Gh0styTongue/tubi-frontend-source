@@ -1,0 +1,15 @@
+@import "theme";
+@import "typography";
+
+@mixin themify($themes: $themes) {
+  @each $theme, $map in $themes {
+    $theme-map: $map !global;
+    .#{$theme}Theme & {
+      @content;
+    }
+  }
+}
+
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}

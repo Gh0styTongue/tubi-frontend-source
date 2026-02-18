@@ -1,0 +1,23 @@
+@import 'theme/mixins';
+@import 'theme/variables';
+
+.orDivider {
+  margin: 24px 0 !important;
+  & + * {
+    margin-top: 24px !important;
+  }
+}
+
+.forgotPassword {
+  margin-top: 12px !important;
+  text-align: center;
+  @include web-body-extra-small;
+  @include themify {
+    color: themed('transparentForeground75');
+  }
+  a {
+    @include themify {
+      color: themed('primaryAccent');
+    }
+  }
+}

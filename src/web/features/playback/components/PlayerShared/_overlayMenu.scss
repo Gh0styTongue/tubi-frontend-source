@@ -1,0 +1,109 @@
+@mixin overlayMenuItem() {
+  @include web-body-medium;
+  // TODO: theming for this color
+  // See: https://github.com/adRise/www/pull/13502
+  color: rgba(255, 255, 255, 0.75);
+  padding-left: convert1080pxToREM(36px);
+  margin-bottom: convert1080pxToREM(16px);
+  position: relative;
+  transition: opacity 0.2s;
+  opacity: 1;
+  backface-visibility: hidden;
+
+  &:not(.active):hover {
+    opacity: 0.7;
+  }
+}
+
+@mixin overlayMenu() {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  background: rgba(28, 31, 41, 0.95);
+  z-index: 1000; // set to 1000 to ensure menu appears over player controls bottom gradient which is set to 999
+  border-radius: 8px;
+  transform: translate(0, -100%);
+  top: calc(100% + 0.6rem);
+  right: convert1080pxToREM(-12px);
+  min-width: convert1080pxToREM(380px);
+  font-size: convert1080pxToREM(14px);
+  line-height: 1.71;
+  letter-spacing: convert1080pxToREM(0.5px);
+  color: $steel-grey;
+
+  & > * {
+    padding: 0 convert1080pxToREM(24px);
+    &:first-child {
+      padding-top: convert1080pxToREM(16px);
+    }
+  }
+
+  h3 {
+    color: white;
+    margin: 0.5rem auto; // reduce top and bottom spacing to half that of the default 1rem.
+    @include web-body-medium-strong;
+    margin-bottom: convert1080pxToREM(16px);
+  }
+
+  section {
+    margin-bottom: convert1080pxToREM(16px);
+  }
+
+  .menuFooter {
+    svg {
+      width: convert1080pxToREM(24px) !important; // need to use `!important` because the specificity is not enough otherwise
+      height: auto;
+
+      position: absolute;
+      left: 0;
+    }
+  }
+
+  li {
+    @include overlayMenuItem;
+    list-style: none;
+  }
+
+  .separatorLine {
+    background: rgb(39, 41, 49);
+  }
+
+  @include media-breakpoint-down('md') {
+    padding: convert1080pxToREM(8px) convert1080pxToREM(18px);
+    font-size: 12px;
+
+    section {
+      margin-bottom: convert1080pxToREM(6px);
+    }
+
+    li {
+      padding-left: convert1080pxToREM(30px);
+      margin-bottom: convert1080pxToREM(12px);
+    }
+
+    svg {
+      width: convert1080pxToREM(22px);
+    }
+
+  }
+
+  .active {
+    color: $black-grey;
+    font-weight: bold;
+  }
+
+  .checkMark {
+    position: absolute;
+    top: 46%; // the font glyph has less descent(20%), so make it a little higher to vertically align
+    left: 0;
+    width: convert1080pxToREM(11px);
+    height: auto;
+    color: $black-grey !important;
+    transform: translate(0, -50%);
+  }
+
+  &:after {
+    // half icon width - half caret width
+    right: convert1080pxToREM(20px - 4px);
+  }
+}

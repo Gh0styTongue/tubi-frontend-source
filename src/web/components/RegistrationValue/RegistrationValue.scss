@@ -1,0 +1,194 @@
+@import 'theme/mixins';
+@import 'theme/variables';
+@import '~@tubitv/web-ui/lib/styles/variables';
+@import '~@tubitv/web-ui/lib/styles/utils';
+
+.registrationValue {
+  padding: 25px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 65px;
+}
+
+.contentWrapper {
+  display: flow-root;
+  box-sizing: border-box;
+}
+
+.title {
+  font-family: $tubi-sans-font-family;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 36px;
+  color: $white;
+}
+
+.subtitle {
+  font-family: $inter-font-family;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffff13;
+}
+
+.valuePropContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  width: 100%;
+  margin: 24px 0;
+  padding: 0 65px;
+}
+
+.valuePropItem:nth-child(3):last-child {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 961px) {
+  .valuePropContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .valuePropItem:nth-child(3):last-child {
+    grid-column: auto;
+  }
+}
+
+.valuePropItem {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: $rounded-xl;
+  text-align: center;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.valuePropIcon {
+  width: 32px;
+  height: 32px;
+  color: $white;
+  margin-bottom: 14px;
+}
+
+.valuePropContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.valuePropItemTitle {
+  font-family: $inter-font-family;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  color: $white;
+  margin-bottom: 8px;
+}
+
+.valuePropItemDescription {
+  font-family: $inter-font-family;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.signUpButton {
+  height: 48px;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 24px auto 0;
+  width: auto;
+}
+
+.ctaRow {
+  display: flex;
+  justify-content: center;
+  padding: 0 65px;
+}
+
+.projectorVariant {
+  position: relative;
+  z-index: 2;
+  overflow: visible;
+  margin-bottom: 0;
+  isolation: isolate;
+}
+
+.projectorVariant::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: url("./images/projectorLight.svg") bottom center / 100% 100% no-repeat;
+  filter: blur(32px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+@media (max-width: 960px) {
+  .titleContainer {
+    padding: 0 40px;
+  }
+  .valuePropContainer {
+    padding: 0 40px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ctaRow {
+    padding: 0 40px;
+  }
+  .valuePropItem:nth-child(3):last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 767px) {
+  .titleContainer {
+    padding: 0 20px;
+  }
+  .valuePropContainer {
+    padding: 0 20px;
+    grid-template-columns: 1fr;
+  }
+  .ctaRow {
+      padding: 0 20px;
+  }
+  .valuePropItem:nth-child(3):last-child {
+    grid-column: 1;
+  }
+  .valuePropItem {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+      gap: 16px;
+  }
+  .valuePropIcon {
+      margin-bottom: 0;
+      flex-shrink: 0;
+  }
+  .valuePropContent {
+      flex: 1;
+  }
+  .valuePropItemTitle {
+      text-align: left;
+      margin-bottom: 4px;
+  }
+  .valuePropItemDescription {
+      text-align: left;
+  }
+}
